@@ -9,7 +9,7 @@ We first start with a 2D dataset of 307 compute servers that allows us to visual
 > latency distribution in dataset
 
 <img src="plots\latency.png" width="400">
-
+<br><br>
 > throughput distribution in dataset
 
 <img src="plots\throughput.png" width="400">
@@ -65,6 +65,7 @@ where
 * <i>fp</i> is the number of false positives - the ground truth label says it’s not an anomaly, but our algorithm incorrectly classified it as an anomaly.
 * <i>fn</i> is the number of false negatives - the ground truth label says it’s an anomaly, but our algorithm incorrectly classified it as not being anomalous.
 
+<br>
 The optimal threshold can be calculated as follows in R.
 
 ```r
