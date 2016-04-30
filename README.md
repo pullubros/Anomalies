@@ -1,6 +1,6 @@
 # Anomaly Detection
 
-**Implementation of anomaly detection algorithm to detect anomalous behavior in server computers !**
+Implementation of anomaly detection algorithm to detect anomalous behavior in server computers !
 <br><br>
 
 We first start with a 2D dataset of 307 compute servers that allows us to visualize what the algorithm is doing. The dimensions measure throughput (mb/s) and latency (ms) of response of each compute server. While a vast majority of the dataset are non-anomalous servers operating normally, some servers act anomalously. We use a Gaussian model to detect anomalous servers in the dataset and then find examples that have very low probability and hence can be considered anomalies. After that, the anomaly detection algorithm is applied to a larger dataset with many dimensions.
