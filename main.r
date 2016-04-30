@@ -61,7 +61,7 @@ zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
 facetool <- cut(zfacet, 100)
 png("./plots/surface.png", height = 700, width = 700)
 persp(x, y, z, xlab = "Latency (ms)", ylab = "Throughput (mb/s)", zlab = "Probability",
-      theta = 50, phi = 20, col = colors[facetool])
+      theta = 50, phi = 10, col = colors[facetool], ticktype = "detailed")
 graphics.off()
 rm(x, y, z, nrz, ncz, jet.colors, colors, zfacet, func, facetool)
 
