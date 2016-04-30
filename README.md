@@ -1,17 +1,20 @@
 # Anomaly Detection
 
-Implementation of anomaly detection algorithm to detect anomalous behavior in server computers !
+**Implementation of anomaly detection algorithm to detect anomalous behavior in server computers !**
+<br><br>
 
 We first start with a 2D dataset of 307 compute servers that allows us to visualize what the algorithm is doing. The dimensions measure throughput (mb/s) and latency (ms) of response of each compute server. While a vast majority of the dataset are non-anomalous servers operating normally, some servers act anomalously. We use a Gaussian model to detect anomalous servers in the dataset and then find examples that have very low probability and hence can be considered anomalies. After that, the anomaly detection algorithm is applied to a larger dataset with many dimensions.
-> gaussian distribution of latency (ms) in dataset
+<br><br>
+
+> latency distribution in dataset
 
 <img src="plots\latency.png" width="400">
 
-> gaussian distribution of throughput (mb/s) in dataset
+> throughput distribution in dataset
 
 <img src="plots\throughput.png" width="400">
 <br><br>
-#### <u>Multivariate Gaussian Distribution</u>
+### Multivariate Gaussian Distribution
 The multivariate gaussian distribution of a k-dimensional random vector x = [X1, X2, …, X<sub>k</sub>] can be written in the following notation:
 
 > <img src=\resources\notation.png>
@@ -29,7 +32,7 @@ A "non-degenerate" multivariate gaussian distribution has density
 > <img src=\resources\equation.png>
 
 where <img src=resources\detSigma.png> is the determinant of <img src=resources\sigma.png>.
-
+<br><br>
 The density can be calculated as follows in R.
 ```r
 Gaussian <- function(X, mu, sigma) {
@@ -42,11 +45,11 @@ Gaussian <- function(X, mu, sigma) {
 }
 ```
 <br>
-> gaussian model for the dataset
+> gaussian model for dataset
 
 <img src = "plots\surface.png">
 <br><br>
-#### <u>Selecting Threshold</u>
+### Selecting Threshold
 
 The low probability examples are more likely to be the anomalies in our dataset. One way to determine which examples are anomalies is to select a threshold with the highest F1 score on a labelled cross validation set. If an example x has a low probability p(x) < ε, then it is considered to be an anomaly. For many different values of ε, we compute the resulting F1 score from the number of examples that the current threshold classifies correctly and incorrectly.
 The F1 score is computed using precision (prec) and recall (rec).
@@ -88,10 +91,10 @@ Threshold <- function(y, p) {
 ```
 <br>
 
-> outliers in dataset with the selected threshold
+> outliers detected in dataset
 
 <img src="plots\outliers.png" width="400">
 <br><br>
-#### <u>High Dimensional Dataset</u>
+### High Dimensional Dataset
 The algorithm is now run on a dataset where each of the 1000 examples is described by 11 dimensions, capturing many more features of the compute servers.
 > With an optimal threshold of 1.38e-18, a total of 117 anomalies are detected.
