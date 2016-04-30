@@ -49,8 +49,8 @@ rm(params)
 p <- Gaussian(data, mu, sigma)
 
 # gaussian distribution plot
-x <- seq(10, 18, length.out = 100)
-y <- seq(10, 18, length.out = 100)
+x <- seq(min(data$Latency), max(data$Latency), length.out = 100)
+y <- seq(min(data$Throughput), max(data$Throughput), length.out = 100)
 func <- function(x, y) return(Gaussian(cbind(x,y), mu, sigma))
 z <- outer(x, y, func)
 nrz <- nrow(z)
@@ -59,7 +59,7 @@ jet.colors <- colorRampPalette(c("#0098ff", "#96005a"))
 colors <- jet.colors(100)
 zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
 facetool <- cut(zfacet, 100)
-png("./plots/surface.png", height = 600, width = 600)
+png("./plots/surface.png", height = 700, width = 700)
 persp(x, y, z, xlab = "Latency (ms)", ylab = "Throughput (mb/s)", zlab = "Probability",
       theta = 50, phi = 20, col = colors[facetool])
 graphics.off()
